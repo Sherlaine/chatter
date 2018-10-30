@@ -3,8 +3,8 @@ import React from 'react';
   render() {
     return (
       <footer className="chatbar">
-        <input className="chatbar-username" placeholder="Your Name(Optional) " />
-        <input className="chatbar-message" placeholder="Type a message and hit ENTER " />
+         <input className="chatbar-username" defaultValue={this.props.currentUser} />
+        <input className="chatbar-message" placeholder="Type a message and hit ENTER" />
       </footer>
     );
   }
