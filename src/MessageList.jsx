@@ -6,11 +6,7 @@ import Message from './Message.jsx';
         <div>
         {this.props.messages.map((message) => {
           return (
-            <div className="message" key={message.id}>
-              <main className="messages">
-                <Message username={message.username} content={message.content} />
-              </main>
-            </div>
+                <Message key={message.id} username={message.username} content={message.content} />
           );
         })}
       </div>
