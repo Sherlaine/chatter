@@ -7,12 +7,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentUser: {name: "Bob"}, // optional. if currentUser is not defined, it means the user is Anonymous
-      messages: [
+      messages:[
         {
+          id:1,
           username: "Bob",
           content: "Has anyone seen my marbles?",
         },
         {
+          id:2,
           username: "Anonymous",
           content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
         }
@@ -25,7 +27,7 @@ class App extends React.Component {
         <nav className="navbar">
           <a href="/" className="navbar-brand">Chatty</a>
         </nav>
-        <MessageList />
+        <MessageList messages={this.state.messages} />
         <ChatBar currentUser={this.state.currentUser.name} />
       </div>
     );
