@@ -20,6 +20,18 @@ class App extends React.Component {
         }
       ]
     };
+
+    this.showNewMessage = this.showNewMessage.bind(this);
+  }
+
+    showNewMessage(newMessage) {
+      const message = this.state.messages.concat({
+        id:Math.random(),
+        username: this.state.currentUser.name,
+        content: newMessage
+      });
+      this.setState({messages: message});
+    
   }
 
   componentDidMount() {
@@ -42,7 +54,7 @@ class App extends React.Component {
           <a href="/" className="navbar-brand">Chatty</a>
         </nav>
         <MessageList messages={this.state.messages} />
-        <ChatBar currentUser={this.state.currentUser.name} />
+        <ChatBar currentUser={this.state.currentUser.name} showNewMessage={this.showNewMessage} />
       </div>
     );
   } 
