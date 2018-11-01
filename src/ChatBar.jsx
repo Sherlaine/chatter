@@ -3,8 +3,8 @@ import React from 'react';
     
     handlerSubmitMsg(event) {  
         if (event.key === "Enter") {
-        this.props.showNewMessage(event.target.value);
-        document.querySelector('.chatbar-message').value="";
+          this.props.handlerSubmitMsg(event.target.value);
+          event.target.value = "";
         }
     }
   render() {
@@ -17,3 +17,5 @@ import React from 'react';
   }
 }
  export default ChatBar; 
+
+ 

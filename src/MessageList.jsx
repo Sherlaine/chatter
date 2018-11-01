@@ -4,11 +4,15 @@ import Message from './Message.jsx';
   render() {
     return (
         <main className="mesages">
-        {this.props.messages.map((message) => {
-          return ( //return messaged as an array (app.jsx) and loop
-                <Message key={message.id} username={message.username} content={message.content} />
-          );
-        })}
+          {
+          this.props.messages.map((message) => {
+            return ( // return messages array (in App.jsx) and loop
+              <div key={message.id}>
+                <Message username={message.username} content={message.content} />
+              </div>
+            );
+          })
+        }
     {/*<div className="message system">
           Anonymous1 changed their name to nomnom.
         </div>  */}
