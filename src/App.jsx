@@ -7,21 +7,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentUser: {name: "Bob"}, // optional. if currentUser is not defined, it means the user is Anonymous
-      messages:[
-        {
-          id:1,
-          username: "Bob",
-          content: "Has anyone seen my marbles?",
-        },
-        {
-          id:2,
-          username: "Anonymous",
-          content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
-        }
-      ]
+      messages:[]
     };
 
     this.socket = new WebSocket("ws://localhost:3001");
+
+    this.socket.onmessage = (event) => {
+      console.log(event);
+      const message = JSON.parse(event.data);
+      const newState = this.state.messages.concat(message); // concatenates new message to exisiting messages
+      this.setState({ messages: newState }); //sets updated messages
+    };
 
     this.sendMessageServer = this.sendMessageServer.bind(this);
   }
@@ -37,16 +33,16 @@ class App extends React.Component {
   sendMessageServer(newMessage) {
     console.log('Message to server is', newMessage);
     const message = {
-      id: Math.random(),
       username: this.state.currentUser.name,
       content: newMessage
-    } // creating the new user's id, username, content
+    } 
     this.socket.send(JSON.stringify(message)); // send to server
     const allMessages = this.state.messages.concat(message); // concatenates new message to exisiting messages
     this.setState({messages: allMessages}); //sets updated messages
   }		   
 
   render() {
+    console.log("rendering <App />");
     return (
       <div>
         <nav className="navbar">
