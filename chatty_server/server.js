@@ -27,10 +27,20 @@ wss.broadcast = function broadcast(data) {
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
+
   ws.on('message', (message) => {
     const newMessage = JSON.parse(message);
-    newMessage.id = uuidv1();
-    wss.broadcast(JSON.stringify(newMessage));
+    if (newMessage.type === "postNotification") {
+      newMessage.id = uuidv1();
+      newMessage.type = "incomingNotification";
+      wss.broadcast(JSON.stringify(newMessage));
+    }
+    
+    if (newMessage.type === "postMessage") {
+      newMessage.id = uuidv1();
+      newMessage.type = "incomingMessage";
+      wss.broadcast(JSON.stringify(newMessage));
+    }
   });
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
   ws.on('close', () => console.log('Client disconnected'));

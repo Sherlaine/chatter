@@ -8,14 +8,20 @@ import Message from './Message.jsx';
           this.props.messages.map((message) => {
             return ( // return messages array (in App.jsx) and loop
               <div key={message.id}>
-                <Message username={message.username} content={message.content} />
+                 <Message 
+                  username={message.username} 
+                  content={message.content} 
+                />
               </div>
             );
           })
         }
-    {/*<div className="message system">
-          Anonymous1 changed their name to nomnom.
-        </div>  */}
+        <div className="message system">
+          { 
+            (this.props.notification) ? this.props.notification : null 
+          }
+        </div>
+    
       </main>
     );
   }

@@ -8,10 +8,9 @@ class App extends React.Component {
     super(props);//allow the children to access props from this parent state
     this.state = { //parent's state listed
       currentUser: {name: "Bob"},
-      messages:[] //msg from server will be store here
+      messages:[],
+      notification: " " //msg from server will be store here
     };
-
-    this.socket = new WebSocket("ws://localhost:3001");
 
     this.changeCurrentUser = this.changeCurrentUser.bind(this);
 
@@ -22,25 +21,40 @@ class App extends React.Component {
     this.setState({ currentUser: {name: newUsername} });
   }	
 
-  sendMessageServer(newMessage) {
-    console.log('Message to server is', newMessage);
-    const message = {
+  sendMessageServer(message, type) {
+    console.log("Type of message is", type);
+    console.log("Message to server is", message);
+    const newMessage = {
+      type: type,
       username: this.state.currentUser.name,
-      content: newMessage
+      content: message
     } 
-    this.socket.send(JSON.stringify(message)); // send to server
+    this.socket.send(JSON.stringify(newMessage)); // send to server
   }		  
   
   componentDidMount() {
     console.log("componentDidMount <App />");
-    
+    this.socket = new WebSocket("ws://localhost:3001");
     this.socket.onopen = () => {
       console.log('Connected to server');
     }
      this.socket.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      const newState = this.state.messages.concat(message); // concatenates new message to exisiting messages
-      this.setState({ messages: newState }); //sets updated messages
+      const data = JSON.parse(event.data);
+      switch(data.type) {
+     case "incomingMessage":
+       console.log("Entering", data.type);
+       const messages = this.state.messages.concat(data); // concatenates new message to exisiting messages
+       this.setState({ messages: messages }); //sets updated messages
+       break;
+     case "incomingNotification":
+       console.log("Entering", data.type);
+       const notifications = this.state.messages.concat(data); // concatenates new message to exisiting messages
+       this.setState({ messages: notifications });
+       break;
+     default:
+       // show an error in the console if the message type is unknown
+       throw new Error("Unknown event type??? " + data.type);
+     }
     };
   }  
 
@@ -52,7 +66,8 @@ class App extends React.Component {
           <a href="/" className="navbar-brand">Chatty</a>
         </nav>
         <MessageList 
-          messages={this.state.messages}/>
+          messages={this.state.messages}
+           notification={this.state.notifcation} />
         <ChatBar 
           currentUser={this.state.currentUser.name} 
           handleSubmit={this.sendMessageServer} 

@@ -2,11 +2,19 @@ import React from 'react';
  class ChatBar extends React.Component {
     
   handleSubmitName(event) {
-    this.props.handleNewUsername(event.target.value);
+    if (event.key === "Enter") {
+      const type = "postNotification";
+      const newUsername = event.target.value;
+      const notificationMessage = `User ${this.props.currentUser} changed their name to ${newUsername}`;
+      this.props.handleSubmit(notificationMessage, type);
+      this.props.handleNewUsername(newUsername);
+    } 
   }
     handleSubmitMsg(event) {  
         if (event.key === "Enter") {
-          this.props.handleSubmit(event.target.value);
+          const type = "postMessage";
+          const newMessage = event.target.value;
+          this.props.handleSubmit(newMessage, type);
           event.target.value = "";
         }
     }
@@ -16,7 +24,7 @@ import React from 'react';
       <footer className="chatbar">
           <input className="chatbar-username" 
           defaultValue={this.props.currentUser}
-          onKeyPress={this.handleSubmitName.bind(this)} />
+          onKeyUp={this.handleSubmitName.bind(this)} />
         <input className="chatbar-message" 
           placeholder="Type a message and hit ENTER" 
           onKeyPress={this.handleSubmitMsg.bind(this)} />
