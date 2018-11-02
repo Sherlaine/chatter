@@ -1,3 +1,6 @@
+### Final Product 
+![2018-11-02](https://media.giphy.com/media/YWUEjUNtaZiHSw8we2/giphy.gif)
+
 React Boilerplate
 =====================
 

@@ -3,11 +3,10 @@ import MessageList from './MessageList.jsx';
 import ChatBar from './ChatBar.jsx';
 
 class App extends React.Component {
-
   constructor(props) {//constructing the state
     super(props);//allow the children to access props from this parent state
     this.state = { //parent's state listed
-      currentUser: {name: "Bob"},
+      currentUser: {name: "Laine"},
       messages:[],
       count: 0 
     };
@@ -78,7 +77,9 @@ class App extends React.Component {
     return (
       <div>
         <nav className="navbar">
-          <a href="/" className="navbar-brand">Chatty</a>
+          <iframe src="https://giphy.com/embed/HPbuRgMPF2vL2" width="45" height="45" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+          <iframe src="https://giphy.com/embed/fdCJs9v36nzJ4vG3VN" width="90" height="50" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+          <a href="/" className="navbar-brand"></a>
           <p className="navbar-count">{this.state.count} users online</p>
         </nav>
         <MessageList 

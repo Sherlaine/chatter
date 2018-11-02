@@ -3,26 +3,23 @@ import React from 'react';
     
   handleSubmitName(event) {
     if (event.key === "Enter") {
-      const type = "postNotification";
       const newUsername = event.target.value;
-      const notificationMessage = `User ${this.props.currentUser} changed their name to ${newUsername}`;
-      this.props.handleSubmit(notificationMessage, type);
       this.props.handleNewUsername(newUsername);
     } 
   }
-    handleSubmitMsg(event) {  
-        if (event.key === "Enter") {
-          const type = "postMessage";
-          const newMessage = event.target.value;
-          this.props.handleSubmit(newMessage, type);
-          event.target.value = "";
-        }
+  handleSubmitMsg(event) {  
+    if (event.key === "Enter") {
+      const type = "postMessage";
+      const newMessage = event.target.value;
+      this.props.handleSubmit(newMessage, type);
+      event.target.value = "";
     }
+  }
   render() {
-    console.log('rendering <Chatbar />')
+    console.log('Rendering <Chatbar />')
     return (
       <footer className="chatbar">
-          <input className="chatbar-username" 
+        <input className="chatbar-username" 
           defaultValue={this.props.currentUser}
           onKeyUp={this.handleSubmitName.bind(this)} />
         <input className="chatbar-message" 
@@ -32,6 +29,7 @@ import React from 'react';
     );
   }
 }
+
  export default ChatBar; 
 
  
