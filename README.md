@@ -1,5 +1,5 @@
 ### Final Product 
-![2018-11-02](https://media.giphy.com/media/YWUEjUNtaZiHSw8we2/giphy.gif)
+![2018-11-02](https://giphy.com/gifs/YWUEjUNtaZiHSw8we2/html5)
 
 React Boilerplate
 =====================
