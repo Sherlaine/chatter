@@ -9,19 +9,13 @@ import Message from './Message.jsx';
             return ( // return messages array (in App.jsx) and loop
               <div key={message.id}>
                  <Message 
+                  type = {message.type}
                   username={message.username} 
-                  content={message.content} 
-                />
+                  content={message.content} />
               </div>
             );
           })
         }
-        <div className="message system">
-          { 
-            (this.props.notification) ? this.props.notification : null 
-          }
-        </div>
-    
       </main>
     );
   }
