@@ -1,6 +1,6 @@
 ### Final Product 
-![2018-11-02]("https://media.giphy.com/media/YWUEjUNtaZiHSw8we2/giphy.gif")
-!["Screenshot of landing page"]()
+![2018-11-02](https://media.giphy.com/media/YWUEjUNtaZiHSw8we2/giphy.gif)
+!["Screenshot of landing page"](https://github.com/Sherlaine/chatter/blob/master/assets/Screen%20Shot%202018-11-02%20at%204.58.35%20PM.png)
 
 React Boilerplate
 =====================
