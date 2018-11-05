@@ -6,7 +6,7 @@ class App extends React.Component {
   constructor(props) {//constructing the state
     super(props);//allow the children to access props from this parent state
     this.state = { //parent's state listed
-      currentUser: {name: "Laine"},
+      currentUser: {name: "Laine", color: ''},
       messages:[],
       count: 0 
     };
@@ -20,7 +20,7 @@ class App extends React.Component {
     let previousUsername = this.state.currentUser.name;
     this.setState({ currentUser: {name: newUsername} });
     const newNotification = {
-      type: "postNotification",
+      type: "postMessage",
       username: null,
       content: `User ${previousUsername} changed their name to ${newUsername}`
     } 
@@ -77,8 +77,8 @@ class App extends React.Component {
     return (
       <div>
         <nav className="navbar">
-          <iframe src="https://giphy.com/embed/HPbuRgMPF2vL2" width="45" height="45" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-          <iframe src="https://giphy.com/embed/fdCJs9v36nzJ4vG3VN" width="90" height="50" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+          <embed src="https://giphy.com/embed/HPbuRgMPF2vL2" width="45" height="45" frameBorder="0" class="giphy-embed" allowFullScreen/>
+          <embed src="https://giphy.com/embed/5t5LMQzF4E8GmKMiWa" width="90" height="50" frameBorder="0" class="giphy-embed" allowFullScreen/>
           <a href="/" className="navbar-brand"></a>
           <p className="navbar-count">{this.state.count} users online</p>
         </nav>
